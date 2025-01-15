@@ -38,7 +38,7 @@ func main() {
 	if errors.Is(err, fs.ErrNotExist) {
 		// Continue
 	} else {
-		log.Printf("warning: %v", err)
+		// log.Printf("warning: %v", err)
 	}
 	err = os.Rename(exe, exe+".OLD")
 	if err != nil {
@@ -58,11 +58,7 @@ func main() {
 	}
 	err = windows.SetFileAttributes(exeOldUTF16Ptr, windows.FILE_ATTRIBUTE_HIDDEN)
 	if err != nil {
-		log.Printf("warning: %v", err)
-	}
-	err = windows.MoveFileEx(exeOldUTF16Ptr, nil, windows.MOVEFILE_DELAY_UNTIL_REBOOT)
-	if err != nil {
-		log.Printf("warning: %v", err)
+		// log.Printf("warning: %v", err)
 	}
 	cmd := &exec.Cmd{
 		Path:   exe,
@@ -78,11 +74,11 @@ func main() {
 	} else if err != nil {
 		log.Fatal(err)
 	}
-	cmd2 := exec.Command("cmd.exe", "/C /C choice /C Y /N /D Y /T 3 > NUL & del "+`"`+exe+".OLD"+`"`)
+	cmd2 := exec.Command("cmd.exe", "/C choice /C Y /N /D Y /T 3 > NUL & del \""+exe+".OLD\"")
 	cmd2.SysProcAttr = &windows.SysProcAttr{HideWindow: true}
 	err = cmd2.Start()
 	if err != nil {
-		log.Printf("warning: %v", err)
+		// log.Printf("warning: %v", err)
 	}
 	os.Exit(cmd.ProcessState.ExitCode())
 }

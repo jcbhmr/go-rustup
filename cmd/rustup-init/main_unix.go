@@ -37,7 +37,7 @@ func main() {
 	if errors.Is(err, fs.ErrNotExist) {
 		// Continue
 	} else {
-		log.Printf("warning: %v", err)
+		// log.Printf("warning: %v", err)
 	}
 	err = os.Rename(exe, exe+".OLD")
 	if err != nil {
@@ -53,7 +53,7 @@ func main() {
 	}
 	err = os.Remove(exe + ".OLD")
 	if err != nil {
-		log.Printf("warning: %v", err)
+		// log.Printf("warning: %v", err)
 	}
 	log.Fatal(unix.Exec(exe, os.Args, os.Environ()))
 }
