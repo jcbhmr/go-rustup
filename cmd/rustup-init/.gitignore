@@ -1,0 +1,6 @@
+!rustup-init.darwin-arm64
+!rustup-init.windows-arm64.exe
+!rustup-init.linux-arm64
+!rustup-init.darwin-amd64
+!rustup-init.windows-amd64.exe
+!rustup-init.linux-amd64
