@@ -51,7 +51,6 @@ func MoltMain(bytes []byte) {
 		Stderr: os.Stderr,
 	}
 	signal.Ignore(os.Interrupt)
-	signal.Ignore(os.Kill)
 	err = cmd.Run()
 	if err != nil {
 		var exitError *exec.ExitError
